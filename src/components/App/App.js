@@ -5,52 +5,64 @@ import GalleryList from '../GalleryList/GalleryList';
 import GalleryItem from '../GalleryItem/GalleryItem';
 
 class App extends Component {
-
+  
+  
+  componentDidMount(){
+    this.getGalleryImages();
+  }
+  
+  
   state = {
     galleryList: [
       {
         id: 2,
         title: 'Image 1',
         description: 'This is an image of my pup Bentley.',
-        path: '',
+        path: "images/pic1.jpg"
       },
       {
         id: 3, 
         title: 'Image 2',
         description: 'This is an image of me watching the sunset on a blanket in Minneapolis',
-        path: '',
+        path: ''
       },
       {
         id: 4, 
         title: 'Image 3',
         description: 'This is an image of my buddy Derrick and I having a laugh in before jetskiing in Cabo, Mexico.',
-        path: '',
+        path: ''
       },
       {
         id: 5, 
         title: 'Image 4',
         description: '',
-        path: '',
+        path: ''
       },
       {
         id: 6, 
         title: 'Image 5',
         description: '',
-        path: '',
+        path: ''
       },
       {
         id: 7, 
         title: 'Image 6',
         description: '',
-        path: '',
+        path: ''
       }
     ]
   }
 
   getGalleryImages = () => {
 
+    
+
     axios.get('/gallery').then((response) => {
       console.log(response);
+
+      this.setState({
+        galleryList: response.data
+      })
 
     }).catch((error) => {
       console.log(error);
@@ -69,14 +81,13 @@ class App extends Component {
         <p>Gallery goes here</p>
         <GalleryList 
         listOfPics={this.state.galleryList}/>
-        <GalleryItem />
-        <img src="images/goat_small.jpg"/>
+        {/* <img src="images/goat_small.jpg"/>
         <img src="images/pic1.jpg"></img>
         <img src="images/pic2.jpg"></img>
         <img src="images/pic3.jpg"></img>
         <img src="images/pic4.jpg"></img>
         <img src="images/pic5.jpg"></img>
-        <img src="images/pic6.jpg"></img>
+        <img src="images/pic6.jpg"></img> */}
       </div>
     );
   }

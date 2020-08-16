@@ -8,17 +8,18 @@ class GalleryList extends Component {
         console.log('**PUT this.props.SOMETHING here');
 
         return(
-            <>
-            {this.props.listOfPics.map((pictures) => {
+            
+            this.props.listOfPics.map((pictures) => {
+                console.log(pictures);
                 return(
                     <GalleryItem key={pictures.id} 
                     pictures={pictures} 
-                    checkIn={this.props.checkingIn}/> // Not sure if I need checkIn={this.props.checkingIn}
+                    /> 
+                
                 ) 
 
-            })}
+            })
 
-            </>
         )
     }
 
