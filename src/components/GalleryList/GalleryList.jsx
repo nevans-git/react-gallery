@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import GalleryItem from '../GalleryItem/GalleryItem';
+import GalleryItem from '../GalleryItem/GalleryItem.jsx';
 
 
 
 class GalleryList extends Component {
     render(){
-        console.log('**PUT this.props.SOMETHING here');
+        console.log(this.props.listOfPics)
 
         return(
-            
-            this.props.listOfPics.map((pictures) => {
-                console.log(pictures);
+            <>
+            {this.props.listOfPics.map((picturesUsed) => {
                 return(
-                    <GalleryItem key={pictures.id} 
-                    pictures={pictures} 
-                    /> 
                 
-                ) 
+                    <GalleryItem 
+                    key={picturesUsed.id}
+                    picturesUsed={picturesUsed}
+                    likeBtn={this.props.likeBtn}/>
+                )
+            })} // FIGURE OUT WHY THIS CURLY BRACE IS YELLING 
 
-            })
+            </>
 
         )
     }

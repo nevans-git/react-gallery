@@ -7,55 +7,26 @@ import GalleryItem from '../GalleryItem/GalleryItem';
 class App extends Component {
   
   
-  componentDidMount(){
-    this.getGalleryImages();
-  }
+  
   
   
   state = {
     galleryList: [
       {
-        id: 2,
-        title: 'Image 1',
-        description: 'This is an image of my pup Bentley.',
-        path: "images/pic1.jpg"
-      },
-      {
-        id: 3, 
-        title: 'Image 2',
-        description: 'This is an image of me watching the sunset on a blanket in Minneapolis',
-        path: ''
-      },
-      {
-        id: 4, 
-        title: 'Image 3',
-        description: 'This is an image of my buddy Derrick and I having a laugh in before jetskiing in Cabo, Mexico.',
-        path: ''
-      },
-      {
-        id: 5, 
-        title: 'Image 4',
+        id: '',
+        title: '',
         description: '',
-        path: ''
-      },
-      {
-        id: 6, 
-        title: 'Image 5',
-        description: '',
-        path: ''
-      },
-      {
-        id: 7, 
-        title: 'Image 6',
-        description: '',
-        path: ''
+        path: '',
+        likes: 0
       }
     ]
   }
 
-  getGalleryImages = () => {
+  componentDidMount(){
+    this.getGalleryImages();
+  }
 
-    
+  getGalleryImages = () => {
 
     axios.get('/gallery').then((response) => {
       console.log(response);
@@ -65,9 +36,21 @@ class App extends Component {
       })
 
     }).catch((error) => {
-      console.log(error);
+      alert('Error in GET: ');
     })
   }
+
+
+  // Like button is a POST
+  likeBtn = (id) => {
+    axios.put(`/gallery/like/${id}`).then((response) => {
+      console.log(response);
+  
+    }).catch((error) => {
+      alert('Error in PUT: ');
+  
+    })
+  } 
 
 
 
@@ -80,14 +63,10 @@ class App extends Component {
         <br/>
         <p>Gallery goes here</p>
         <GalleryList 
-        listOfPics={this.state.galleryList}/>
-        {/* <img src="images/goat_small.jpg"/>
-        <img src="images/pic1.jpg"></img>
-        <img src="images/pic2.jpg"></img>
-        <img src="images/pic3.jpg"></img>
-        <img src="images/pic4.jpg"></img>
-        <img src="images/pic5.jpg"></img>
-        <img src="images/pic6.jpg"></img> */}
+        listOfPics={this.state.galleryList}
+        likeBtn = {this.likeBtn}/>
+        
+       
       </div>
     );
   }
