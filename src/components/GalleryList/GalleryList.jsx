@@ -15,9 +15,9 @@ class GalleryList extends Component {
                     <GalleryItem 
                     key={picturesUsed.id}
                     picturesUsed={picturesUsed}
-                    likeBtn={this.props.likeBtn}/>
+                    likeBtn={this.props.likeBtn} />
                 )
-            })} // FIGURE OUT WHY THIS CURLY BRACE IS YELLING 
+            })}
 
             </>
 

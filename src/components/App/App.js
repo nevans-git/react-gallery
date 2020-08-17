@@ -43,8 +43,10 @@ class App extends Component {
 
   // Like button is a POST
   likeBtn = (id) => {
+    console.log(id);
     axios.put(`/gallery/like/${id}`).then((response) => {
       console.log(response);
+      this.getGalleryImages();
   
     }).catch((error) => {
       alert('Error in PUT: ');
@@ -55,17 +57,26 @@ class App extends Component {
 
 
   render() {
+    console.log('rendered!', this.state);
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Gallery of my life</h1>
+          <h1 className="App-title">Gallery Of My Life</h1>
         </header>
         <br/>
-        <p>Gallery goes here</p>
+        
+        <br/>
         <GalleryList 
         listOfPics={this.state.galleryList}
-        likeBtn = {this.likeBtn}/>
-        
+        likeBtn = {this.likeBtn} />
+
+       {/* {JSON.stringify(this.state)} */}
+
+        <footer className="App-footer">
+          
+          <h1 className="App-footer-title">Thanks for viewing!</h1>
+         
+        </footer> 
        
       </div>
     );

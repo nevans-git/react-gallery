@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './GalleryItem.css';
 
 class GalleryItem extends Component {
 
@@ -17,22 +17,22 @@ class GalleryItem extends Component {
 
         console.log(this.props.pictures);
 
-        const pictuersUsed = this.props.pictuersUsed
+        const picturesUsed = this.props.picturesUsed;
 
 
         return(
         <>
         {/* click to flip desc. should go in here... Reference the Ternary Operator from RABIN-REACT-REVIEW*/}
             <div onClick={this.imageFlipper}>
-                {this.state.imageAndDesc ? <img src={picturesUsed.path}/> : <p>{picturesUsed.description}</p>}
+                {this.state.imageAndDesc ? <img className='picture' src={picturesUsed.path}/> : <h4>{picturesUsed.description}</h4>}
 
 
-            {/* <img src={this.props.pictures.path} alt=""/> */}
+           
 
             </div>
 
-            <button onClick={() => this.props.likeBtn(pictuersUsed.id)}>LIKE</button>
-            <p>{picturesUsed.likes} : Total Likes </p>
+            <button onClick={() => this.props.likeBtn(picturesUsed.id)}>LIKE</button>
+            <p>Total Likes: {picturesUsed.likes} </p>
 
         </>
 
